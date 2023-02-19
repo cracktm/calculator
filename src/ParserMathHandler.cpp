@@ -42,7 +42,7 @@ int ParserMathHandler::pow(int num1, int num2)
 {
 	if (num2 == 2.0) return num1 * num1;
 	if (num2 == -1.0) return 1.0 / num1;
-	if (num2 < 0) return 1.0 / ParserMathHandler::pow(num1, -num2);
+	if (num2 < 0) return 1.0 / pow(num1, -num2);
 
 
 	float result = 1.0;
