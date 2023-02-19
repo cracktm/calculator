@@ -66,12 +66,12 @@ int ParserMathHandler::pow(int num1, int num2)
 
 float ParserMathHandler::operation(int num1, int num2, char sign)
 {
-	if (sign == '+') return (float) ParserMathHandler::sum(num1, num2);
-	if (sign == '-') return (float)	ParserMathHandler::sub(num1, num2);
-	if (sign == '*') return 		ParserMathHandler::mul(num1, num2);
-	if (sign == '/') return 		ParserMathHandler::div(num1, num2);
-	if (sign == '%') return (float) ParserMathHandler::mod(num1, num2);
-	if (sign == '^') return (float) ParserMathHandler::pow(num1, num2);
+	if (sign == '+') return (float) sum(num1, num2);
+	if (sign == '-') return (float)	sub(num1, num2);
+	if (sign == '*') return mul(num1, num2);
+	if (sign == '/') return div(num1, num2);
+	if (sign == '%') return (float) mod(num1, num2);
+	if (sign == '^') return (float) pow(num1, num2);
 
 	return 0; // default
 }
