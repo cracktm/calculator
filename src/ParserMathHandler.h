@@ -1,4 +1,5 @@
-#pragma once
+#ifndef __SRC_PARSER_MATH_HANDLER_H_
+#define __SRC_PARSER_MATH_HANDLER_H_
 
 class ParserMathHandler
 {
@@ -20,3 +21,5 @@ public:
 	float operation(int num1, int num2, char sign);
 
 };
+
+#endif // __SRC_PARSER_MATH_HANDLER_H_
