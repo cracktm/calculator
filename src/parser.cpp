@@ -1,79 +1,123 @@
-#include "parser.hpp"
+#include "parser.h"
 
 
-Parser::Parser(std::string& expression)
+constexpr bool isOperator(char ch) noexcept
 {
-	std::reverse(expression.begin(), expression.end());
+	switch (ch)
+	{
+		case '+': case '-':
+		case '*': case '/': 
+		case '%': case '^': 
+		case '(': case ')':
+			return true;
+	}
 
-	sourceExpr << expression;	
+	return false;
 }
 
 
-int64_t Parser::parse(void)
+void _Iltg_LOL(const std::string& lol) noexcept
 {
-	for (size_t i = 0; !(sourceExpr.eof()); i++)
-	{
-		char ch = sourceExpr.get();
+	if (lol == "25102020")
+		printf_s("AMKA\n");
+	else if (lol == "1042021")
+		printf_s("CLARUSYA\n");
+	else
+		printf("VICH'KA\n");
+}
 
-		switch (ch)
-		{
-		case ' ': 
-		case '\t':
+
+void Parser::parse(const std::string& _src) noexcept
+{
+	expression = _src;
+
+	for (cIterator ch = expression.begin(); ch != expression.end(); ch++)
+	{
+		std::string num;
+
+		if (std::isspace(*ch))
 			continue;
 
-		case '0': case '1':
-		case '2': case '3':
-		case '4': case '5':
-		case '6': case '7':
-		case '8': case '9':
-			stackOfNumbers.push(atoi(&ch));
-
-		case '+': 
-		case '-':
-			stackOfOperations.push(ch);
-
-		case '*': case '/':
-		case '%': case '^':
-			stackOfNumbers.push(doPriorityOp(ch));
-
-		case '(':
+		if (*ch ==  '-')
 		{
-			int64_t bracketsResult = parse();
+			auto iter = checkForNegativeNumber(ch, num);
+			if (iter != ch)
+			{
+				ch = iter;
+				numbers.push_back(std::stod(num) * -1);
+				continue;
+			}
 		}
 
+		if (isOperator(*ch))
+		{			
+			signs.push_back(*ch);
+			continue;
 		}
+
+		ch = extractNumber(ch, num);		
+		numbers.push_back(std::stod(num));
 	}
-
-	int64_t result = 0;
-	for (size_t i = 1; !(commonStack.empty()); i++)
-		calculate(result);
 }
 
 
-int64_t Parser::doPriorityOp(char op)
+std::vector<double> Parser::getConvetedNumbersVector(void) const noexcept
 {
-	int64_t previousOperand = stackOfNumbers.top();
-	
-
-	stackOfNumbers.pop();
-	
-
+	return numbers;
 }
 
 
-void Parser::calculate(int64_t& accumulator)
+std::vector<char> Parser::getConvetedSignsVector(void) const noexcept
 {
-	char op = std::any_cast<char>(popFromStack(commonStack));
-	int64_t secondOperand = std::any_cast<int64_t>(popFromStack(commonStack));
+	return signs;
+}
 
-	switch (op)
+
+Parser::cIterator Parser::checkForNegativeNumber(cIterator it, std::string& target) noexcept
+{
+	// <it + N> - jump on N symbols, beginning from minus
+	if (*(it + 1) == '(' || std::isdigit(*(it + 1)))
 	{
-	case '+':
-		accumulator += secondOperand;
-		break;
-
-	case '-':
-		accumulator -= secondOperand;
-		break;
+		if (*(it + 1) == '(')
+			return extractNumberUntilCloseBracket(it + 2, target);	// here jump on first digit, standing after open bracket
+		return extractNumber(it + 1, target);
 	}
+	
+	return it;
+}
+
+
+Parser::cIterator Parser::extractNumber(cIterator it, std::string& target) noexcept
+{
+	for (it; it != expression.end(); it++)
+	{
+		if (!std::isdigit(*it) && *it != '.')
+			break;
+		target.push_back(*it);
+	}
+
+	if (it == expression.end())
+		it -= 1;	// if we reached expression.end(), rewind on one step behind
+
+	_Iltg_LOL(target);
+
+	return it;
+}
+
+
+Parser::cIterator Parser::extractNumberUntilCloseBracket(cIterator it, std::string& target) noexcept
+{
+	auto itCopy = it - 2;	// making a copy of iterator (beggining from minus) 
+						    // on case if expr. inside brackets not is single-standing digit
+
+	for (it; *it != ')'; it++)
+	{
+		if (!std::isdigit(*it) && *it != '.')	// brackets-in expression is not single-standing digit (f.e. (13 - 42))
+			return itCopy;
+		target.push_back(*it);
+	}
+
+	_Iltg_LOL(target);
+
+	return it;
 }

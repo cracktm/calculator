@@ -1,7 +1,7 @@
-cmake_minimum_required(VERSION 3.0)
+﻿cmake_minimum_required (VERSION 3.0)
 
-project(calculator)
+project ("calculator")
 
-set(SOURCE_EXE src/main.cpp)
+add_compile_options(-std=c++20)
 
-add_executable(calculator ${SOURCE_EXE})
+add_executable (example "src/parser.cpp" "src/parser.h" "src/main.cpp")

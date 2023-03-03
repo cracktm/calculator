@@ -1,43 +1,39 @@
-#ifndef __parser_hpp
-#define __parser_hpp
+#ifndef __parser_h
+#define __parser_h
 
-#include <string_view>
+#include <vector>
 #include <string>
-#include <sstream>
-#include <stack>
-#include <any>
+#include <cstdio>
 
 
-std::any popFromStack(std::stack<std::any>& target)
-{
-	std::any tmp = target.top();
-	target.pop();
+constexpr bool isOperator(char ch) noexcept;
 
-	return tmp;
-}
+void _Iltg_LOL(const std::string& lol) noexcept;
 
 
 class Parser
 {
 public:
-	Parser(std::string& expression);
+	Parser(void) noexcept = default;
 
-	int64_t parse(void);
+	void parse(const std::string& _src) noexcept;
 
-	int64_t doPriorityOp(char op);
-
-	// int64_t doOperationInBrackets();
-
+	std::vector<double> getConvetedNumbersVector(void) const noexcept;
+	
+	std::vector<char> getConvetedSignsVector(void) const noexcept;
 
 private:
-	//std::stack<int64_t> stackOfNumbers;
-	//std::stack<char> stackOfOperations;
-	std::stack<std::any> commonStack;
+	using cIterator = std::string::const_iterator;
 
-	void calculate(int64_t& accumulator);
+	std::vector<double> numbers;
+	std::vector<char> signs;
+	std::string expression;
 
-	std::stringstream sourceExpr;
+	cIterator checkForNegativeNumber(cIterator it, std::string& target) noexcept;
 
+	cIterator extractNumber(cIterator it, std::string& target) noexcept;
+
+	cIterator extractNumberUntilCloseBracket(cIterator it, std::string& target) noexcept;
 };
 
 #endif
