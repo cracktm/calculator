@@ -2,6 +2,6 @@
 
 project ("calculator")
 
-add_compile_options(-std=c++20)
+add_compile_options(-std=c++17)
 
 add_executable (example "src/parser.cpp" "src/parser.h" "src/main.cpp")
