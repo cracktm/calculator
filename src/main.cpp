@@ -15,8 +15,8 @@ int main(void)
 
 	parser.parse("-25102020 + -(1042021) / 26122021");
 
-	auto nums = parser.getConvetedNumbersVector();
-	auto signs = parser.getConvetedSignsVector();
+	auto nums = parser.getConvertedNumbersVector();
+	auto signs = parser.getConvertedSignsVector();
 
 	for (auto i : nums)
 		printf_s("<%.2f> ", i);
