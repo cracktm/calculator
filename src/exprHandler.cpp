@@ -5,12 +5,12 @@
 
 double ExprHandler::opHandler(double x1, double x2, std::string sign)
 {
-	if (sign == "+") return math.sum(x1, x2);
-	if (sign == "-") return math.sub(x1, x2);
-	if (sign == "*") return math.mul(x1, x2);
-	if (sign == "/") return math.div(x1, x2);
-	if (sign == "^") return math.pow(x1, x2);
-	if (sign == "%") return (double) math.mod((int)x1, (int)x2);
+	if (sign == "+") return calc::sum(x1, x2);
+	if (sign == "-") return calc::sub(x1, x2);
+	if (sign == "*") return calc::mul(x1, x2);
+	if (sign == "/") return calc::div(x1, x2);
+	if (sign == "^") return calc::pow(x1, x2);
+	if (sign == "%") return (double) calc::mod((int)x1, (int)x2);
 	
 
 	return 0; // default

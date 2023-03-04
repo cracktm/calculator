@@ -11,13 +11,12 @@
 class ExprHandler
 {
 private:
-	Math math;
 	double opHandler(double x1, double x2, std::string sign);
 
 	int getSignPriority(std::string sign);
 
 public:
-	ExprHandler() : math(Math()) {}
+	ExprHandler() {}
 	~ExprHandler() {}
 	
 	

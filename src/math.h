@@ -1,15 +1,8 @@
 #ifndef __SRC_MATH_H_
 #define __SRC_MATH_H_
 
-
-
-class Math
+namespace calc
 {
-public:
-	Math() {}
-	~Math() {}
-
-
 	double sum(double x1, double x2);
 	double sub(double x1, double x2);
 
@@ -23,8 +16,7 @@ public:
 
 	double pow(double x, int e);
 	double pow(double x, double e, double epsilon = 0.00000000001); // default accuraty - 10 decimal places
-};
-
+}
 
 
 #endif // __SRC_MATH_H_

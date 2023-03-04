@@ -1,21 +1,20 @@
 #include "math.h"
 
 
+double calc::sum(double x1, double x2) { return x1 + x2; }
 
-double Math::sum(double x1, double x2) { return x1 + x2; }
-
-double Math::sub(double x1, double x2) { return x1 - x2; }
-
-
-double Math::mul(double x1, double x2) { return x1 * x2; }
-
-double Math::div(double x1, double x2) { return x1 / x2; }
+double calc::sub(double x1, double x2) { return x1 - x2; }
 
 
-int Math::mod(int x1, int x2) { return x1 % x2; }
+double calc::mul(double x1, double x2) { return x1 * x2; }
+
+double calc::div(double x1, double x2) { return x1 / x2; }
 
 
-double Math::exp(double x, double epsilon) // default accuraty - 10 decimal places
+int calc::mod(int x1, int x2) { return x1 % x2; }
+
+
+double calc::exp(double x, double epsilon) // default accuraty - 10 decimal places
 {
 	if (x < 0.0) return 1.0 / exp(-x, epsilon);
 
@@ -32,7 +31,7 @@ double Math::exp(double x, double epsilon) // default accuraty - 10 decimal plac
 	return result;
 }
 
-double Math::ln(double x, double epsilon) // x > 0, default accuraty - 10 decimal places
+double calc::ln(double x, double epsilon) // x > 0, default accuraty - 10 decimal places
 {
 	double result = 0.0;
 	double currentTerm = 1.0;
@@ -50,7 +49,7 @@ double Math::ln(double x, double epsilon) // x > 0, default accuraty - 10 decima
 }
 
 
-double Math::pow(double x, int e)
+double calc::pow(double x, int e)
 {
 	if (e < 0) return 1.0 / pow(x, -e);
 
@@ -61,7 +60,7 @@ double Math::pow(double x, int e)
 	return result;
 }
 
-double Math::pow(double x, double e, double epsilon) // default accuraty - 10 decimal places
+double calc::pow(double x, double e, double epsilon) // default accuraty - 10 decimal places
 {
 	if (e == 2.0) return x * x;		// base cases
 	if (e == -1.0) return 1.0 / x;	//
