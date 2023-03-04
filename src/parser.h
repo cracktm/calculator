@@ -18,9 +18,9 @@ public:
 
 	void parse(const std::string& _src) noexcept;
 
-	std::vector<double> getConvetedNumbersVector(void) const noexcept;
+	std::vector<double> getConvertedNumbersVector(void) const noexcept;
 	
-	std::vector<char> getConvetedSignsVector(void) const noexcept;
+	std::vector<char> getConvertedSignsVector(void) const noexcept;
 
 private:
 	using cIterator = std::string::const_iterator;
