@@ -3,24 +3,24 @@
 
 
 #include "math.h"
+#include "operators.h"
 
 #include <vector>
-#include <string>
 
 
 class ExprHandler
 {
 private:
-	double opHandler(double x1, double x2, std::string sign);
+	double opHandler(double a, double b, Sign sign);
 
-	int getSignPriority(std::string sign);
+	int getSignPriority(Sign sign);
 
 public:
 	ExprHandler() {}
 	~ExprHandler() {}
 	
 	
-	double exprHandler(std::vector<double> nums, std::vector<std::string> signs);
+	double exprHandler(std::vector<double> nums, std::vector<Sign> signs);
 };
 
 

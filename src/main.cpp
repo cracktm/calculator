@@ -1,5 +1,6 @@
 #include "parser.h"
 #include "exprHandler.h"
+#include "operators.h"
 
 #include <iostream>
 #include <vector>
@@ -35,7 +36,7 @@ int main(void)
 	ExprHandler math;
 
 	std::vector<double> other_nums = {6, 8, 10, 5, 3.14, 0.01, 12};
-	std::vector<std::string> other_signs = {"+", "/", "-", "^", "*", "+"};
+	std::vector<Sign> other_signs = {PLUS_SIGN, DIVIDE_SIGN, MINUS_SIGN, POW_SIGN, MULTIPLY_SIGN, PLUS_SIGN};
 
 	std::cout.precision(17);
 	std::cout << "answer: " << math.exprHandler(other_nums, other_signs);

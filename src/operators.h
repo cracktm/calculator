@@ -1,8 +1,10 @@
-#ifndef __SRC_OPERATOS_HPP
-#define __SRC_OPERATOS_HPP
+#ifndef __SRC_OPERATOS_H
+#define __SRC_OPERATOS_H
+
+#include <cstdint>
 
 
-typedef uint8_t sign;
+#define Sign uint8_t
 
 
 #define ERROR_SIGN 0 // error
@@ -36,9 +38,22 @@ typedef uint8_t sign;
 #define OPEN_PARENTHESIS_SIGN  40
 #define CLOSE_PARENTHESIS_SIGN 41
 
-
 // max possible value is 255
 // because operators use the uint8_t
 
 
-#endif // __SRC_OPERATOS_HPP
+#define Priority uint8_t
+
+
+#define P_ERROR 0 // error
+
+// priorities
+
+#define P_1 1
+#define P_2 2
+#define P_3 3
+#define P_4 4
+#define p_5 5
+
+
+#endif // __SRC_OPERATOS_H

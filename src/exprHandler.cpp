@@ -3,50 +3,53 @@
 
 
 
-double ExprHandler::opHandler(double x1, double x2, std::string sign)
+double ExprHandler::opHandler(double a, double b, Sign sign)
 {
-	if (sign == "+") return calc::sum(x1, x2);
-	if (sign == "-") return calc::sub(x1, x2);
-	if (sign == "*") return calc::mul(x1, x2);
-	if (sign == "/") return calc::div(x1, x2);
-	if (sign == "^") return calc::pow(x1, x2);
-	if (sign == "%") return (double) calc::mod((int)x1, (int)x2);
-	
-
-	return 0; // default
+	switch(sign)
+	{
+		case PLUS_SIGN:     return calc::sum(a, b);
+		case MINUS_SIGN:    return calc::sub(a, b);
+		case MULTIPLY_SIGN: return calc::mul(a, b);
+		case DIVIDE_SIGN:   return calc::div(a, b);
+		case POW_SIGN:      return calc::pow(a, b);
+		case MOD_SIGN:      return (double) calc::mod((int)a, (int)b);
+		
+		default: return CALC_ERROR;
+	}
 }
 
 
 
 
-int ExprHandler::getSignPriority(std::string sign)
+int ExprHandler::getSignPriority(Sign sign)
 {
-	if (sign == "+") return 1;
-	if (sign == "-") return 1;
+	switch(sign)
+	{
+		case PLUS_SIGN:     return P_1;
+		case MINUS_SIGN:    return P_1;
 
-	if (sign == "*") return 2;
-	if (sign == "/") return 2;
+		case MULTIPLY_SIGN: return P_2;
+		case DIVIDE_SIGN:   return P_2;
 
-	//functions
-	if (sign == "^") return 3;
-	if (sign == "%") return 3;
-	
+		case POW_SIGN:      return P_3;
+		case MOD_SIGN:      return P_3;
 
-	return 0; // default
+		default: return P_ERROR;
+	}
 }
 
 
 
 
 
-double ExprHandler::exprHandler(std::vector<double> nums, std::vector<std::string> signs)
+double ExprHandler::exprHandler(std::vector<double> nums, std::vector<Sign> signs)
 {
 	if (signs.empty()) return nums.front();
 
 
 	//finding of minimum priority sign index
 	int minPrioritySignIndex = 0;
-	for (int i = 1; i < signs.size(); i++)
+	for (size_t i = 1; i < signs.size(); i++)
 		if (getSignPriority(signs[i]) <= getSignPriority(signs[minPrioritySignIndex])) // "<=" not "<" because there are noncommutative signs
 			minPrioritySignIndex = i;
 
@@ -55,7 +58,7 @@ double ExprHandler::exprHandler(std::vector<double> nums, std::vector<std::strin
 	double leftExpr = exprHandler
 	(
 		std::vector<double>(nums.begin(), nums.begin() + minPrioritySignIndex + 1), // left side of numbers
-		std::vector<std::string>(signs.begin(), signs.begin() + minPrioritySignIndex) // left side of signs
+		std::vector<Sign>(signs.begin(), signs.begin() + minPrioritySignIndex) // left side of signs
 	);
 
 	// dividing an expression by the minimum priority sign
@@ -63,7 +66,7 @@ double ExprHandler::exprHandler(std::vector<double> nums, std::vector<std::strin
 	double rightExpr = exprHandler
 	(
 		std::vector<double>(nums.begin() + minPrioritySignIndex + 1, nums.end()), // right side of numbers
-		std::vector<std::string>(signs.begin() + minPrioritySignIndex + 1, signs.end()) // right side of signs
+		std::vector<Sign>(signs.begin() + minPrioritySignIndex + 1, signs.end()) // right side of signs
 	);
 
 

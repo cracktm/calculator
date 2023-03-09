@@ -1,17 +1,17 @@
 #include "math.h"
 
 
-double calc::sum(double x1, double x2) { return x1 + x2; }
+double calc::sum(double a, double b) { return a + b; }
 
-double calc::sub(double x1, double x2) { return x1 - x2; }
-
-
-double calc::mul(double x1, double x2) { return x1 * x2; }
-
-double calc::div(double x1, double x2) { return x1 / x2; }
+double calc::sub(double a, double b) { return a - b; }
 
 
-int calc::mod(int x1, int x2) { return x1 % x2; }
+double calc::mul(double a, double b) { return a * b; }
+
+double calc::div(double a, double b) { return a / b; }
+
+
+int calc::mod(int a, int b) { return a % b; }
 
 
 double calc::exp(double x, double epsilon) // default accuraty - 10 decimal places
