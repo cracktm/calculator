@@ -17,9 +17,7 @@ void Parser::parse(const std::string& src) noexcept
 		{
 			ch = extractUntil(ch, exprEnd, extractTarget, [](char sym)
 				{
-					if (!std::isdigit(sym) && sym != '.')
-						return false;
-					return true;
+					return (!std::isdigit(sym) && sym != '.') ? false : true;
 				});
 
 			(isPreviousSymbolIs(ch, '-')) ? numbers.push_back(std::stod(extractTarget) * -1) : numbers.push_back(std::stod(extractTarget));
@@ -31,9 +29,7 @@ void Parser::parse(const std::string& src) noexcept
 		{
 			ch = extractUntil(ch, exprEnd, extractTarget, [](char sym)
 				{
-					if (!isalpha(sym))
-						return false;
-					return true;
+					return (!isalpha(sym)) ? false : true;
 				});
 
 			(isItConstante(extractTarget)) ? (numbers.push_back(getConstValue(extractTarget))) : (operations.push_back(convertToStatementID(extractTarget)));
@@ -66,7 +62,7 @@ std::vector<statement_t> Parser::statements(void) const noexcept
 }
 
 
-bool Parser::isPreviousSymbolIs(const_iterator it, char ch) noexcept
+bool Parser::isPreviousSymbolIs(std::string::const_iterator it, char ch) noexcept
 {
 	return (it != std::begin(expression) && (*(--it) == ch));
 }

@@ -3,8 +3,6 @@
 
 #include <string>
 
-typedef std::string::const_iterator const_iterator;
-
 
 inline bool isItConstante(const std::string& str) noexcept
 {
@@ -19,9 +17,9 @@ inline double getConstValue(const std::string& _const) noexcept
 }
 
 
-void _Iltg_LOL(const std::string& lol) noexcept
+inline void _Iltg_LOL(const std::string& lol) noexcept
 {
-	// FIX
+	// FIX COMPARING
 	if (lol == "25102020")
 		printf_s("Special agent A\n");
 	else if (lol == "1042021")

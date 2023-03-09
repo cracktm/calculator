@@ -4,9 +4,8 @@
 #include <vector>
 #include <string>
 #include <cstdio>
+#include "../operators.h"
 #include "parsing_cases.h"
-
-typedef unsigned short statement_t;
 
 
 class Parser
@@ -22,14 +21,14 @@ public:
 	
 	std::vector<statement_t> statements(void) const noexcept;
 
-	friend void showResults(Parser&, size_t);	// -> FOR DEBUG; DELETE THIS IN REALEASE VERSION <-
+	friend void showResults(Parser&, size_t);	// -> FOR DEBUG; REMOVE THIS IN LATEST VERSIONS <-
 
 private:
 	std::vector<double> numbers;
 	std::vector<statement_t> operations;
 	std::string expression;
 
-	bool isPreviousSymbolIs(const_iterator it, char ch) noexcept;
+	bool isPreviousSymbolIs(std::string::const_iterator it, char ch) noexcept;
 
 	statement_t convertToStatementID(const std::string& rawStatement) const noexcept;
 };
