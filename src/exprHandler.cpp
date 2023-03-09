@@ -9,8 +9,8 @@ double ExprHandler::opHandler(double a, double b, statement_t sign)
 	{
 		case PLUS_SIGN:     return calc::sum(a, b);
 		case MINUS_SIGN:    return calc::sub(a, b);
-		case MULTIPLY_SIGN: return calc::mul(a, b);
-		case DIVIDE_SIGN:   return calc::div(a, b);
+		case MULT_SIGN:		return calc::mul(a, b);
+		case DIV_SIGN:		return calc::div(a, b);
 		case POW_SIGN:      return calc::pow(a, b);
 		case MOD_SIGN:      return (double) calc::mod((int)a, (int)b);
 		
@@ -28,8 +28,8 @@ int ExprHandler::getSignPriority(statement_t sign)
 		case PLUS_SIGN:     return P_1;
 		case MINUS_SIGN:    return P_1;
 
-		case MULTIPLY_SIGN: return P_2;
-		case DIVIDE_SIGN:   return P_2;
+		case MULT_SIGN: return P_2;
+		case DIV_SIGN:   return P_2;
 
 		case POW_SIGN:      return P_3;
 		case MOD_SIGN:      return P_3;

@@ -1,12 +1,30 @@
-#ifndef __SRC_OPERATOS_H
+﻿#ifndef __SRC_OPERATOS_H
 #define __SRC_OPERATOS_H
 
 #include <cstdint>
 
-
-// #define Sign uint8_t
 typedef uint8_t statement_t;
+typedef uint8_t priority;
 
+enum StatementsID
+{
+	ERROR_SIGN = 0, 
+	PLUS_SIGN, MINUS_SIGN,
+	MULT_SIGN, DIV_SIGN, 
+	MOD_SIGN, POW_SIGN, 
+	SIN_SIGN, ASIN_SIGN,
+	COS_SIGN, ACOS_SIGN, 
+	TAN_SIGN, ATAN_SIGN, 
+	CTG_SIGN, ACTG_SIGN,
+	EXP_SIGN, LN_SIGN, 
+	LOG_SIGN, SQRT_SIGN, 
+	FACTOR_SIGN, RAD_SIGN, 
+	DEG_SIGN,
+	OP_PARENTHESIS_SIGN,
+	CL_PARENTHESIS_SIGN
+};
+
+/*	( ͡° ͜ʖ ͡°) 
 #define ERROR_SIGN 0 // error
 
 // operators
@@ -40,10 +58,7 @@ typedef uint8_t statement_t;
 
 // max possible value is 255
 // because operators use the uint8_t
-
-
-#define Priority uint8_t
-
+*/
 
 #define P_ERROR 0 // error
 

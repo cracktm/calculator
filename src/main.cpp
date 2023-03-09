@@ -54,7 +54,7 @@ int main(void)
 	ExprHandler math;
 
 	std::vector<double> other_nums = {6, 8, 10, 5, 3.14, 0.01, 12};
-	std::vector<statement_t> other_signs = {PLUS_SIGN, DIVIDE_SIGN, MINUS_SIGN, POW_SIGN, MULTIPLY_SIGN, PLUS_SIGN};
+	std::vector<statement_t> other_signs = {PLUS_SIGN, DIV_SIGN, MINUS_SIGN, POW_SIGN, MULT_SIGN, PLUS_SIGN};
 
 	std::cout.precision(17);
 	std::cout << "answer: " << math.exprHandler(other_nums, other_signs);
