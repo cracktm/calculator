@@ -1,8 +1,9 @@
 # directories
 out/
 .vs/
+my_cuties/
 # ----------
 
-# CMake config (for Visual Studio)
+# CMake configuration file (for Visual Studio)
 CMakeSettings.json
 # ----------
