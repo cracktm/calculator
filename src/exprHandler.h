@@ -11,9 +11,12 @@
 class ExprHandler
 {
 private:
-	double opHandler(double a, double b, statement_t sign);
+	double binaryOpHandler(double a, double b, statement_t sign);
+	double unaryOpHandler(double x, statement_t sign);
 
 	int getSignPriority(statement_t sign);
+	bool isUnaryOp(statement_t sign);
+
 
 public:
 	ExprHandler() {}
